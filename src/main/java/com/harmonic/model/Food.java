@@ -1,6 +1,6 @@
 package com.harmonic.model;
 
-public class Meal {
+public class Food {
 
     private int id;
 
@@ -8,7 +8,7 @@ public class Meal {
 
     private int votesCount;
 
-    public Meal(String description) {
+    public Food(String description) {
         this.description = description;
     }
 
