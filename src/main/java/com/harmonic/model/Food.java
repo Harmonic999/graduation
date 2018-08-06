@@ -1,23 +1,24 @@
 package com.harmonic.model;
 
-public class Food {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
-    private int id;
+@Entity
+@Table(name = "food")
+public class Food extends AbstractBaseEntity {
 
+    @Column(name = "description")
     private String description;
 
+    @Column(name = "votes")
     private int votesCount;
+
+    public Food() {
+    }
 
     public Food(String description) {
         this.description = description;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getDescription() {
