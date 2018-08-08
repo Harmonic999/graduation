@@ -21,6 +21,11 @@ public class Food extends AbstractBaseEntity {
         this.description = description;
     }
 
+    public Food(Integer id, String description) {
+        super(id);
+        this.description = description;
+    }
+
     public String getDescription() {
         return description;
     }
@@ -33,12 +38,14 @@ public class Food extends AbstractBaseEntity {
         return votesCount;
     }
 
-    public void plusVote() {
+    public Food plusVote() {
         votesCount++;
+        return this;
     }
 
-    public void minusVote() {
+    public Food minusVote() {
         votesCount--;
+        return this;
     }
 
 }

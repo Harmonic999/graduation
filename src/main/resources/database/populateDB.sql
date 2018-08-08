@@ -1,4 +1,4 @@
 delete from food;
-insert into food (description, votes) values ('Рис с курицей', 0);
-insert into food (description, votes) values ('Борщ', 0);
-insert into food (description, votes) values ('Говяжьи пельмени', 0);
+insert into food (description, votes) values ('food_1', 0);
+insert into food (description, votes) values ('food_2', 0);
+insert into food (description, votes) values ('food_3', 0);

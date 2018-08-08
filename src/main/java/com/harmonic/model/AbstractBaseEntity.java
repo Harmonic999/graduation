@@ -26,6 +26,10 @@ public abstract class AbstractBaseEntity {
     protected AbstractBaseEntity() {
     }
 
+    AbstractBaseEntity(Integer id) {
+        this.id = id;
+    }
+
     @Override
     public String toString() {
         return String.format("Entity %s (%s)", getClass().getName(), id);
