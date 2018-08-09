@@ -11,6 +11,5 @@ public class MainTest {
                 "spring/spring-db.xml"
         );
         FoodRepository repository = context.getBean(FoodRepository.class);
-        System.out.println(repository.getAll().size());
     }
 }

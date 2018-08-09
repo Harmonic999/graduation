@@ -1,8 +1,7 @@
 package com.harmonic.repository.jpa;
 
-import com.harmonic.model.Food;
 import com.harmonic.model.Restaurant;
-import com.harmonic.repository.FoodRepository;
+import com.harmonic.repository.RestaurantRepository;
 import org.springframework.dao.support.DataAccessUtils;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,40 +12,38 @@ import java.util.List;
 
 @Repository
 @Transactional(readOnly = true)
-public class JpaFoodRepositoryImpl implements FoodRepository {
+public class JpaRestaurantRepositoryImpl implements RestaurantRepository {
 
     @PersistenceContext
     private EntityManager em;
 
     @Transactional
-    public Food save(Food food, int restaurantId) {
-        if (food.isNew()) {
-            food.setRestaurant(em.getReference(Restaurant.class, restaurantId));
-            em.persist(food);
-            return food;
+    public Restaurant save(Restaurant restaurant) {
+        if (restaurant.isNew()) {
+            em.persist(restaurant);
+            return restaurant;
         } else {
-            return em.merge(food);
+            return em.merge(restaurant);
         }
     }
 
     @Transactional
     public boolean delete(int id) {
-        return em.createQuery("DELETE FROM Food f WHERE f.id=:id")
+        return em.createQuery("DELETE FROM Restaurant r WHERE r.id=:id")
                 .setParameter("id", id).executeUpdate() != 0;
     }
 
     @SuppressWarnings("all")
-    public Food get(int id) {
-        List<Food> list = em.createQuery("SELECT f FROM Food f WHERE f.id=:id")
+    public Restaurant get(int id) {
+        List<Restaurant> list = em.createQuery("SELECT r FROM Restaurant r WHERE r.id=:id")
                 .setParameter("id", id)
                 .getResultList();
         return DataAccessUtils.singleResult(list);
     }
 
     @SuppressWarnings("all")
-    public List<Food> getAll(int restaurantId) {
-        return em.createQuery("SELECT f FROM Food f WHERE f.restaurant.id=:id")
-                .setParameter("id", restaurantId)
-                .getResultList();
+    public List<Restaurant> getAll() {
+        return em.createQuery("SELECT r FROM Restaurant r").getResultList();
     }
+
 }

@@ -1,7 +1,8 @@
 package com.harmonic;
 
 import com.harmonic.model.Food;
-import com.harmonic.repository.FoodRepository;
+import com.harmonic.service.FoodService;
+import com.harmonic.util.exception.NotFoundException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,52 +23,47 @@ import static com.harmonic.FoodTestData.*;
 public class FoodServiceTest {
 
     @Autowired
-    private FoodRepository repository;
+    private FoodService service;
 
     @Test
     public void create() {
-        Food created = repository.save(getCreated());
-        assertMatch(repository.getAll(), FOOD_1, FOOD_2, FOOD_3, created);
+        Food created = service.save(getCreated(), RESTAURANT_1_ID);
+        assertMatch(service.getAll(RESTAURANT_1_ID), FOOD_1, FOOD_2, FOOD_3, created);
     }
 
     @Test
     public void delete() {
-        repository.delete(FOOD_1.getId());
-        assertMatch(repository.getAll(), FOOD_2, FOOD_3);
+        service.delete(FOOD_1.getId());
+        assertMatch(service.getAll(RESTAURANT_1_ID), FOOD_2, FOOD_3);
     }
 
     @Test
     public void getAll() {
-        assertMatch(repository.getAll(), FOOD_1, FOOD_2, FOOD_3);
+        assertMatch(service.getAll(RESTAURANT_1_ID), FOOD_1, FOOD_2, FOOD_3);
     }
 
     @Test
     public void getById() {
-        Food loaded = repository.get(FOOD_3.getId());
+        Food loaded = service.get(FOOD_3.getId());
         assertMatch(loaded, FOOD_3);
     }
 
     @Test
     public void update() {
-        Food loaded = repository.get(3);
+        Food loaded = service.get(3);
         loaded.setDescription("new description");
-        loaded.plusVote();
-        repository.save(loaded);
-        assertMatch(repository.getAll(), FOOD_1, FOOD_2, loaded);
+        service.save(loaded, RESTAURANT_1_ID);
+        assertMatch(service.getAll(RESTAURANT_1_ID), FOOD_1, FOOD_2, loaded);
     }
 
-    @Test(expected = Exception.class)
+    @Test(expected = NotFoundException.class)
     public void deleteNotFound() throws Exception {
-        if (!repository.delete(4)) {
-            throw new Exception();
-        }
+        service.delete(7);
     }
 
-    @Test(expected = Exception.class)
+    @Test(expected = NotFoundException.class)
     public void getNotFoundById() throws Exception {
-        if (repository.get(4) == null) {
-            throw new Exception();
-        }
+        service.get(7);
     }
 
 }

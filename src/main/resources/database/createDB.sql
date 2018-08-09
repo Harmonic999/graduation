@@ -1,9 +1,18 @@
 DROP TABLE IF EXISTS food;
+DROP TABLE IF EXISTS restaurants;
+
+CREATE TABLE work.restaurants (
+  id INT NOT NULL AUTO_INCREMENT,
+  name VARCHAR(50) NOT NULL UNIQUE,
+  vote_count INT NOT NULL,
+  PRIMARY KEY (id),
+  UNIQUE INDEX id_UNIQUE(id ASC) VISIBLE
+);
 
 CREATE TABLE work.food (
   id INT NOT NULL AUTO_INCREMENT,
+  restaurant_id INT NOT NULL,
   description VARCHAR(45) NOT NULL,
-  votes INT NOT NULL,
   PRIMARY KEY (id),
   UNIQUE INDEX id_UNIQUE(id ASC) VISIBLE
 );

@@ -1,16 +1,17 @@
-package com.harmonic.repository;
+package com.harmonic.service;
 
 import com.harmonic.model.Food;
 
 import java.util.List;
 
-public interface FoodRepository {
+public interface FoodService {
 
     Food save(Food food, int restaurantId);
 
-    boolean delete(int id);
+    void delete(int id);
 
     Food get(int id);
 
     List<Food> getAll(int restaurantId);
+
 }

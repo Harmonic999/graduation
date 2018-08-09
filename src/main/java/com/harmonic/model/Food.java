@@ -1,8 +1,9 @@
 package com.harmonic.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
+import javax.persistence.*;
 
 @Entity
 @Table(name = "food")
@@ -11,8 +12,10 @@ public class Food extends AbstractBaseEntity {
     @Column(name = "description")
     private String description;
 
-    @Column(name = "votes")
-    private int votesCount;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "restaurant_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private Restaurant restaurant;
 
     public Food() {
     }
@@ -34,18 +37,11 @@ public class Food extends AbstractBaseEntity {
         this.description = description;
     }
 
-    public int getVotesCount() {
-        return votesCount;
+    public Restaurant getRestaurant() {
+        return restaurant;
     }
 
-    public Food plusVote() {
-        votesCount++;
-        return this;
+    public void setRestaurant(Restaurant restaurant) {
+        this.restaurant = restaurant;
     }
-
-    public Food minusVote() {
-        votesCount--;
-        return this;
-    }
-
 }
