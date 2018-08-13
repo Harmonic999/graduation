@@ -23,14 +23,18 @@ public class JpaRestaurantRepositoryImpl implements RestaurantRepository {
             em.persist(restaurant);
             return restaurant;
         } else {
-            return em.merge(restaurant);
+            Restaurant existing = get(restaurant.getId());
+            existing.setName(restaurant.getName());
+            return existing;
         }
     }
 
     @Transactional
     public boolean delete(int id) {
-        return em.createQuery("DELETE FROM Restaurant r WHERE r.id=:id")
-                .setParameter("id", id).executeUpdate() != 0;
+        Restaurant r = get(id);
+        boolean exists = r != null;
+        em.remove(r);
+        return exists;
     }
 
     @SuppressWarnings("all")

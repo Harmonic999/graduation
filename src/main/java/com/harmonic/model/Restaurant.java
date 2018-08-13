@@ -13,10 +13,15 @@ public class Restaurant extends AbstractBaseEntity {
     @Column(name = "vote_count")
     private int votes_count;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "restaurant")
+    @OneToMany(
+            mappedBy = "restaurant",
+            cascade = CascadeType.REMOVE,
+            orphanRemoval = true
+    )
     private List<Food> foodList;
 
-    public Restaurant(){}
+    public Restaurant() {
+    }
 
     public Restaurant(String name) {
         this.name = name;
@@ -34,7 +39,4 @@ public class Restaurant extends AbstractBaseEntity {
         return votes_count;
     }
 
-    public void setVotes_count(int votes_count) {
-        this.votes_count = votes_count;
-    }
 }

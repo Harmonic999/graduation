@@ -20,8 +20,8 @@ public class JpaFoodRepositoryImpl implements FoodRepository {
 
     @Transactional
     public Food save(Food food, int restaurantId) {
+        food.setRestaurant(em.getReference(Restaurant.class, restaurantId));
         if (food.isNew()) {
-            food.setRestaurant(em.getReference(Restaurant.class, restaurantId));
             em.persist(food);
             return food;
         } else {

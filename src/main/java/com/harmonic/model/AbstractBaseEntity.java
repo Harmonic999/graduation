@@ -11,7 +11,7 @@ public abstract class AbstractBaseEntity {
     @Column(name = "id")
     protected Integer id;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 

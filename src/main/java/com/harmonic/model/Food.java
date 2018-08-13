@@ -13,8 +13,7 @@ public class Food extends AbstractBaseEntity {
     private String description;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "restaurant_id", nullable = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JoinColumn(name = "restaurant_id")
     private Restaurant restaurant;
 
     public Food() {

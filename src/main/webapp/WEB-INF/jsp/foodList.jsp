@@ -9,18 +9,17 @@
 
 <body>
 
+<h2>Lunch menu:</h2>
 
-<h3>Food List:</h3>
-</body>
+<hr>
 
-<table border="1" cellpadding="8" cellspacing="0">
+<table width="30%" border="1" cellpadding="8" cellspacing="0">
 
     <thead>
     <tr>
         <th>Description</th>
-        <th>Score</th>
-        <th>Vote for</th>
-        <th>Vote against</th>
+        <th>Edit</th>
+        <th>Delete</th>
     </tr>
     </thead>
 
@@ -28,20 +27,18 @@
     <c:forEach var="meal" items="${mealList}">
         <tr>
             <td>${meal.description}</td>
-            <td>${meal.votesCount}</td>
-            <td>
-                <a href="/foodList/vote_for/${meal.id}"><h2>+</h2></a>
-            </td>
-
-            <td>
-                <a href="/foodList/vote_against/${meal.id}"><h2>-</h2></a>
-            </td>
+            <td><a href="/restaurants/${restaurantName}/${restaurantId}/menu/edit/${meal.id}">Edit</a></td>
+            <td><a href="/restaurants/${restaurantName}/${restaurantId}/menu/delete/${meal.id}">Delete</a></td>
         </tr>
     </c:forEach>
+
+    <tr>
+        <td colspan="3"><a href="/restaurants/${restaurantName}/${restaurantId}/menu/create/">Add New Food</a></td>
+    </tr>
+
     </tbody>
 
 </table>
 
-<button onclick="window.history.back()" type="button">Back</button>
-
+</body>
 </html>
