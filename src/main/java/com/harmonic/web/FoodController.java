@@ -8,10 +8,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
+@RequestMapping("/restaurants/{name}/{restId}/menu")
 public class FoodController {
 
     private FoodService service;
@@ -21,21 +23,21 @@ public class FoodController {
         this.service = service;
     }
 
-    @GetMapping("/restaurants/{name}/{id}/menu")
-    public String listFood(Model model, @PathVariable int id, @PathVariable String name) {
-        model.addAttribute("mealList", service.getAll(id));
+    @GetMapping()
+    public String listFood(Model model, @PathVariable int restId, @PathVariable String name) {
+        model.addAttribute("mealList", service.getAll(restId));
         model.addAttribute("restaurantName", name);
-        model.addAttribute("restaurantId", id);
+        model.addAttribute("restaurantId", restId);
         return "foodList";
     }
 
-    @GetMapping("restaurants/{name}/{restId}/menu/delete/{foodId}")
+    @GetMapping("/delete/{foodId}")
     public String deleteFood(@PathVariable String name, @PathVariable int restId, @PathVariable int foodId) {
         service.delete(foodId);
         return "redirect:/restaurants/" + name + "/" + restId + "/" + "menu";
     }
 
-    @GetMapping("restaurants/{name}/{restId}/menu/edit/{foodId}")
+    @GetMapping("/edit/{foodId}")
     public String editFood(Model model, @PathVariable String name, @PathVariable int restId, @PathVariable int foodId) {
         model.addAttribute("restaurantName", name);
         model.addAttribute("restaurantId", restId);
@@ -43,7 +45,7 @@ public class FoodController {
         return "foodForm";
     }
 
-    @GetMapping("restaurants/{name}/{restId}/menu/create/")
+    @GetMapping("/create")
     public String createFood(Model model, @PathVariable String name, @PathVariable int restId) {
         model.addAttribute("restaurantName", name);
         model.addAttribute("restaurantId", restId);
@@ -51,8 +53,8 @@ public class FoodController {
         return "foodForm";
     }
 
-    @PostMapping("restaurants/{restName}/{restId}/menu/create_or_edit_food")
-    public String createOrEditFood(HttpServletRequest request, @PathVariable String restName, @PathVariable int restId) {
+    @PostMapping("/create_or_edit_food")
+    public String createOrEditFood(HttpServletRequest request, @PathVariable String name, @PathVariable int restId) {
         String description = request.getParameter("description");
         String foodId = request.getParameter("foodId");
         Food food = new Food(description);
@@ -62,6 +64,6 @@ public class FoodController {
         }
 
         service.save(food, restId);
-        return "redirect:/restaurants/" + restName + "/" + restId + "/" + "menu";
+        return "redirect:/restaurants/" + name + "/" + restId + "/" + "menu";
     }
 }
