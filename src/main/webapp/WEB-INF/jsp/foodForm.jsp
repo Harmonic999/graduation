@@ -2,9 +2,7 @@
 
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
-<head>
-    <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/> ">
-</head>
+
 <body>
 
 <h2>${food.id == null ? 'Add food:' : 'Edit food:'}</h2>

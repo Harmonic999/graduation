@@ -3,48 +3,48 @@
 
 <html>
 
-<head>
-    <title>Restaurants</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css">
-
-</head>
+<jsp:include page="fragments/headTag.jsp"/>
 
 <body>
+<jsp:include page="fragments/bodyHeader.jsp"/>
+<script type="text/javascript" src="resources/js/datatableUtil.js" defer></script>
+<script type="text/javascript" src="resources/js/restaurantDatatable.js" defer></script>
 
-<h2>Restaurants:</h2>
+<div class="jumbotron">
+    <div class="container">
 
-<hr>
+        <h2>Restaurants:</h2>
 
-<table cellpadding="8" cellspacing="0" id="restaurants_table" width="50%">
+        <hr>
 
-    <thead>
-    <tr>
-        <th>Name</th>
-        <th>Score</th>
-        <th>Menu</th>
-        <th>Edit</th>
-        <th>Delete</th>
-    </tr>
-    </thead>
+        <table id="datatable" class="table table-striped" >
 
-    <tbody>
-    <c:forEach var="restaurant" items="${restaurantList}">
-        <tr>
-            <td>${restaurant.name}</td>
-            <td>${restaurant.votes_count}</td>
-            <td><a href="/restaurants/${restaurant.name}/${restaurant.id}/menu">Explore</a></td>
-            <td><a href="/restaurants/edit/${restaurant.id}">Edit</a></td>
-            <td><a href="/restaurants/delete/${restaurant.id}">Delete</a></td>
-        </tr>
-    </c:forEach>
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Score</th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+            </thead>
 
-    <tr>
-        <td colspan="5"><a href="/restaurants/create">Add Restaurant</a></td>
-    </tr>
+            <tbody>
+            <c:forEach var="restaurant" items="${restaurantList}">
+                <tr>
+                    <td>${restaurant.name}</td>
+                    <td>${restaurant.votes_count}</td>
+                    <td><button class="btn btn-primary">Explore Menu</button></td>
+                    <td><a class="fa fa-pencil"></a></td>
+                    <td><a class="fa fa-remove"></a></td>
+                </tr>
+            </c:forEach>
 
-    </tbody>
+            </tbody>
 
-</table>
-
+        </table>
+    </div>
+</div>
+<jsp:include page="fragments/bodyFooter.jsp"/>
 </body>
 </html>
