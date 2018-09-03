@@ -1,8 +1,7 @@
-function makeEditable() {
-    $(".delete").click(function () {
-        deleteRow($(this).attr("id"));
-    });
+let form;
 
+function makeEditable() {
+    form = $("#detailsForm");
     $(document).ajaxError(function (event, jqXHR, options, jsExc) {
         failNoty(jqXHR);
     });
@@ -14,6 +13,16 @@ function makeEditable() {
 function add() {
     $("#detailsForm").find(":input").val("");
     $("#editRow").modal();
+}
+
+function updateRow(id) {
+    $("#modalTitle").html("Update");
+    $.get(ajaxUrl + id, function (data) {
+        $.each(data, function (key, value) {
+            form.find("input[name='" + key + "']").val(value);
+        });
+        $('#editRow').modal();
+    });
 }
 
 function deleteRow(id) {
@@ -29,7 +38,7 @@ function deleteRow(id) {
 
 function updateTable() {
     $.get(ajaxUrl, function (data) {
-        datatableApi.clear().rows.add(data).draw();
+        dataTableApi.clear().rows.add(data).draw();
     });
 }
 
@@ -64,4 +73,18 @@ function successNoty(text) {
         layout: "bottomRight",
         timeout: 1000
     }).show();
+}
+
+function renderEditBtn(data, type, row) {
+    if (type === "display") {
+        return "<a onclick='updateRow(" + row.id + ");'>" +
+            "<span style='color: green; cursor: pointer' class='fa fa-pencil'></span></a>";
+    }
+}
+
+function renderDeleteBtn(data, type, row) {
+    if (type === "display") {
+        return "<a onclick='deleteRow(" + row.id + ");'>" +
+            "<span style='color: red; cursor: pointer' class='fa fa-remove'></span></a>";
+    }
 }

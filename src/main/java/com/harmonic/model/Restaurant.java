@@ -11,7 +11,7 @@ public class Restaurant extends AbstractBaseEntity {
     private String name;
 
     @Column(name = "vote_count")
-    private int votes_count;
+    private int votesCount;
 
     @OneToMany(
             mappedBy = "restaurant",
@@ -27,6 +27,12 @@ public class Restaurant extends AbstractBaseEntity {
         this.name = name;
     }
 
+    public Restaurant(Integer id, String name, int votesCount) {
+        super(id);
+        this.name = name;
+        this.votesCount = votesCount;
+    }
+
     public String getName() {
         return name;
     }
@@ -35,8 +41,8 @@ public class Restaurant extends AbstractBaseEntity {
         this.name = name;
     }
 
-    public int getVotes_count() {
-        return votes_count;
+    public int getVotesCount() {
+        return votesCount;
     }
 
 }
