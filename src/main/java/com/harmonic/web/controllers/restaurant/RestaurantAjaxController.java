@@ -1,36 +1,53 @@
 package com.harmonic.web.controllers.restaurant;
 
 import com.harmonic.to.RestaurantTo;
+import com.harmonic.web.RestaurantValidator;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
 @RequestMapping("/ajax/restaurants")
 public class RestaurantAjaxController extends AbstractRestaurantController {
 
+    private final RestaurantValidator validator;
+
+    @Autowired
+    public RestaurantAjaxController(RestaurantValidator validator) {
+        this.validator = validator;
+    }
+
+    @InitBinder
+    protected void initBinder(WebDataBinder binder) {
+        binder.setValidator(validator);
+    }
+
     @Override
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    List<RestaurantTo> getAll() {
+    public List<RestaurantTo> getAll() {
         return super.getAll();
     }
 
     @Override
     @GetMapping("/{id}")
-    RestaurantTo get(@PathVariable int id) {
+    public RestaurantTo get(@PathVariable int id) {
         return super.get(id);
     }
 
     @Override
     @DeleteMapping("/{id}")
-    void deleteRestaurant(@PathVariable int id) {
+    public void deleteRestaurant(@PathVariable int id) {
         super.deleteRestaurant(id);
     }
 
-    @Override
     @PostMapping
-    void createOrUpdateRestaurant(RestaurantTo restaurantTo) {
+    public void createOrUpdateRestaurant(@Validated RestaurantTo restaurantTo) {
         super.createOrUpdateRestaurant(restaurantTo);
     }
 }

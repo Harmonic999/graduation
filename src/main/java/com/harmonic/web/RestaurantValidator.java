@@ -16,7 +16,7 @@ public class RestaurantValidator implements Validator {
 
     @Override
     public void validate(Object target, Errors errors) {
-        //RestaurantTo restaurantTo = (RestaurantTo) target;
+        System.out.println("validating restaurant transfer object...");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name", "name.empty", "Name field is empty");
     }
 
