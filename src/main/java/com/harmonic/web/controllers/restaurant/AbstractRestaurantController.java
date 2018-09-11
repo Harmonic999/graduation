@@ -9,7 +9,7 @@ import java.util.List;
 
 import static com.harmonic.util.RestaurantUtil.*;
 
-public class AbstractRestaurantController {
+public abstract class AbstractRestaurantController {
 
     @Autowired
     private RestaurantService restaurantService;

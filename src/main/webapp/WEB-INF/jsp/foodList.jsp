@@ -24,20 +24,47 @@
             </tr>
             </thead>
 
-            <tbody>
-            <c:forEach var="meal" items="${mealList}">
-                <tr>
-                    <td>${meal.description}</td>
-                    <td><a href="/restaurants/${restaurantName}/${restaurantId}/menu/edit/${meal.id}">Edit</a></td>
-                    <td><a href="/restaurants/${restaurantName}/${restaurantId}/menu/delete/${meal.id}">Delete</a></td>
-                </tr>
-            </c:forEach>
-
-            </tbody>
-
         </table>
+
+        <button class="btn btn-primary pull-right" onclick="add()">
+            Add New
+            <span class="fa fa-plus"></span>
+        </button>
+
     </div>
 </div>
+
+<div class="modal fade" tabindex="-1" id="editRow">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="modalTitle"></h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="detailsForm">
+                    <input type="hidden" id="id" name="id">
+
+                    <div class="form-group">
+                        <label for="description" class="col-form-label">Description</label>
+                        <input type="text" class="form-control" id="description" name="description"
+                               placeholder="description">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                    <span class="fa fa-close"></span>
+
+                </button>
+                <button type="button" class="btn btn-primary" onclick="save()">
+                    <span class="fa fa-check"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <jsp:include page="fragments/bodyFooter.jsp"/>
 </body>
 </html>
