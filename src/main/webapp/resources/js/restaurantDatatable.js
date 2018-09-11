@@ -70,7 +70,7 @@ $(function () {
 
 function updateRow(id) {
     $("#modalTitle").html("Update");
-    $.get(ajaxUrl + id.replaceAll(".", "/"), function (data) {
+    $.get(ajaxUrl + id, function (data) {
         $.each(data, function (key, value) {
             form.find("input[name='" + key + "']").val(value);
         });

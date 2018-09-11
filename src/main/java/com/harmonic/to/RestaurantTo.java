@@ -1,9 +1,11 @@
 package com.harmonic.to;
 
+import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 
 public class RestaurantTo extends BaseTo implements Serializable {
 
+    @NotBlank
     private String name;
 
     private Integer voteCount;
