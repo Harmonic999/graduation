@@ -45,6 +45,8 @@
                 <form id="detailsForm">
                     <input type="hidden" id="id" name="id">
 
+                    <input type="hidden" id="restaurantId" name="restaurantId" value="">
+
                     <div class="form-group">
                         <label for="description" class="col-form-label">Description</label>
                         <input type="text" class="form-control" id="description" name="description"

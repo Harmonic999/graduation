@@ -1,7 +1,10 @@
-let form;
+const form = $("#detailsForm");
 
 function makeEditable() {
-    form = $("#detailsForm");
+    $(document).ajaxError(function (event, jqXHR, options, jsExc) {
+        failNoty(jqXHR);
+    });
+
     // solve problem with cache in IE: https://stackoverflow.com/a/4303862/548473
     $.ajaxSetup({cache: false});
 }
@@ -22,26 +25,6 @@ function deleteRow(id) {
     });
 }
 
-function updateTable() {
-    $.get(ajaxUrl, function (data) {
-        dataTableApi.clear().rows.add(data).draw();
-    });
-}
-
-function save() {
-    var form = $("#detailsForm");
-    $.ajax({
-        type: "POST",
-        url: ajaxUrl,
-        data: form.serialize(),
-        success: function () {
-            $("#editRow").modal("hide");
-            updateTable();
-            successNoty("Saved");
-        }
-    });
-}
-
 var failedNote;
 
 function closeNoty() {
@@ -51,12 +34,23 @@ function closeNoty() {
     }
 }
 
-function successNoty(text) {
+function successNoty(key) {
     closeNoty();
     new Noty({
-        text: "<span class='fa fa-lg fa-check'></span> &nbsp;" + text,
+        text: "<span class='fa fa-lg fa-check'></span> &nbsp;" + key,
         type: 'success',
         layout: "bottomRight",
         timeout: 1000
+    }).show();
+}
+
+function failNoty(jqXHR) {
+    closeNoty();
+    // https://stackoverflow.com/questions/48229776
+    const errorInfo = JSON.parse(jqXHR.responseText);
+    failedNote = new Noty({
+        text: "<span class='fa fa-lg fa-exclamation-circle'></span> &nbsp;" + errorInfo.detail,
+        type: "error",
+        layout: "bottomRight"
     }).show();
 }

@@ -17,4 +17,8 @@ public class FoodUtil {
     public static FoodTo asTo(Food food) {
         return new FoodTo(food.getId(), food.getDescription());
     }
+
+    public static Food createFromTo(FoodTo foodTo) {
+        return new Food(foodTo.getId(), foodTo.getDescription());
+    }
 }

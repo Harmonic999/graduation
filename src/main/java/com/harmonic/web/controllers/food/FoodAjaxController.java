@@ -1,10 +1,7 @@
 package com.harmonic.web.controllers.food;
 
 import com.harmonic.to.FoodTo;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,5 +19,17 @@ public class FoodAjaxController extends AbstractFoodController {
     @GetMapping("/{restaurantId}/{id}")
     public FoodTo get(@PathVariable int id) {
         return super.get(id);
+    }
+
+    @Override
+    @PostMapping("/{restaurantId}")
+    public void createOrUpdateFood(FoodTo foodTo, @PathVariable int restaurantId) {
+        super.createOrUpdateFood(foodTo, restaurantId);
+    }
+
+    @Override
+    @DeleteMapping("/{id}")
+    public void deleteFood(@PathVariable int id) {
+        super.deleteFood(id);
     }
 }

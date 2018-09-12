@@ -2,6 +2,7 @@ package com.harmonic.web.controllers.food;
 
 import com.harmonic.service.FoodService;
 import com.harmonic.to.FoodTo;
+import com.harmonic.util.FoodUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
@@ -19,6 +20,14 @@ public abstract class AbstractFoodController {
 
     public FoodTo get(int id) {
         return asTo(foodService.get(id));
+    }
+
+    public void createOrUpdateFood(FoodTo foodTo, int restaurantId) {
+        foodService.save(FoodUtil.createFromTo(foodTo), restaurantId);
+    }
+
+    public void deleteFood(int id) {
+        foodService.delete(id);
     }
 
 }

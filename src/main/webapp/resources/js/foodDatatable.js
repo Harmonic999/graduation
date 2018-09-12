@@ -61,6 +61,26 @@ function buildMenuUrlWithRestaurantId() {
     return ajaxUrl + getRestaurantIdFromCurrentPage();
 }
 
+function save() {
+    var form = $("#detailsForm");
+    $.ajax({
+        type: "POST",
+        url: ajaxUrl + getRestaurantIdFromCurrentPage(),
+        data: form.serialize(),
+        success: function () {
+            $("#editRow").modal("hide");
+            updateTable();
+            successNoty("Saved");
+        }
+    });
+}
+
+function updateTable() {
+    $.get(ajaxUrl + getRestaurantIdFromCurrentPage(), function (data) {
+        dataTableApi.clear().rows.add(data).draw();
+    });
+}
+
 function updateRow(restId, foodId) {
     $("#modalTitle").html("Update");
     $.get(ajaxUrl + restId + "/" + foodId, function (data) {
