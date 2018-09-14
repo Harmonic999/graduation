@@ -55,4 +55,11 @@ public class JpaUserRepositoryImpl implements UserRepository {
     public List<User> getAll() {
         return em.createQuery("SELECT u FROM User u").getResultList();
     }
+
+    @Override
+    @SuppressWarnings("all")
+    public User getByEmail(String email) {
+        List<User> users = em.createQuery("SELECT u FROM User u WHERE u.email=:email").setParameter("email", email).getResultList();
+        return DataAccessUtils.singleResult(users);
+    }
 }

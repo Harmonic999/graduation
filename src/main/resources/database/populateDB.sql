@@ -20,8 +20,8 @@ insert into food (description, restaurant_id) values ('food_4', 2);
 insert into food (description, restaurant_id) values ('food_5', 2);
 insert into food (description, restaurant_id) values ('food_6', 2);
 
-insert into users (name, email, password) values ('Admin', 'admin@gmail.com', 'password');
-insert into users (name, email, password) values ('User', 'user@gmail.com', 'password');
+insert into users (name, email, password) values ('Admin', 'admin@gmail.com', '{noop}password');
+insert into users (name, email, password) values ('User', 'user@gmail.com', '{noop}password');
 
 insert into user_roles (user_id, role) values ('1', 'ROLE_ADMIN');
 insert into user_roles (user_id, role) values ('1', 'ROLE_USER');

@@ -1,4 +1,4 @@
-package com.harmonic.web;
+package com.harmonic.web.validation;
 
 import com.harmonic.to.RestaurantTo;
 import com.harmonic.util.exception.FieldEmptyException;
