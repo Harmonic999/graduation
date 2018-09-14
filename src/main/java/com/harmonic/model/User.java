@@ -18,7 +18,7 @@ public class User extends AbstractBaseEntity {
     @Column(name = "password")
     private String password;
 
-    @Column(name = "registered", columnDefinition = "timestamp default now()")
+    @Column(name = "registered", insertable = false, updatable = false)
     private Date registered;
 
     @Enumerated(EnumType.STRING)
@@ -29,16 +29,15 @@ public class User extends AbstractBaseEntity {
 
     public User() {}
 
-    public User(Integer id, String name, String email, String password, Date registered, Role role, Role... roles) {
-        this(id, name, email, password, registered, EnumSet.of(role, roles));
+    public User(Integer id, String name, String email, String password, Role role, Role... roles) {
+        this(id, name, email, password, EnumSet.of(role, roles));
     }
 
-    public User(Integer id, String name, String email, String password, Date registered, Set<Role> roles) {
+    public User(Integer id, String name, String email, String password, Set<Role> roles) {
         super(id);
         this.name = name;
         this.email = email;
         this.password = password;
-        this.registered = registered;
         this.roles = roles;
     }
 
