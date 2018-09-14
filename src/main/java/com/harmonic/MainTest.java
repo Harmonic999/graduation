@@ -17,6 +17,6 @@ public class MainTest {
 
         UserService service = context.getBean(UserService.class);
         //userRepository.save(new User(null, "user_7", "user_7@gmail.com", "password", Role.ROLE_USER, Role.ROLE_ADMIN));
-        service.save(new User(null, "hello", "hello@gmail.com", "password", Role.ROLE_USER));
+        service.save(new User(null, "hello", "hello", "hello", Role.ROLE_USER));
     }
 }

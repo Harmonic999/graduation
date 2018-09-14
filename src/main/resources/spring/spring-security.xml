@@ -7,12 +7,18 @@
     <http pattern="/resources/**" security="none"/>
     <http pattern="/webjars/**" security="none"/>
 
-    <beans:bean class="org.springframework.security.crypto.factory.PasswordEncoderFactories" id="passwordEncoder" factory-method="createDelegatingPasswordEncoder"/>
+    <beans:bean class="org.springframework.security.crypto.factory.PasswordEncoderFactories" id="passwordEncoder"
+                factory-method="createDelegatingPasswordEncoder"/>
 
-    <http use-expressions="true" create-session="stateless">
-        <intercept-url pattern="/**/admin/**" access="hasRole('ROLE_ADMIN')"/>
+    <http>
+        <intercept-url pattern="/login" access="isAnonymous()"/>
+
         <intercept-url pattern="/**" access="isAuthenticated()"/>
-        <http-basic/>
+
+        <form-login login-page="/login" default-target-url="/restaurants"
+                    authentication-failure-url="/login?error=true"
+                    login-processing-url="/spring_security_check"
+                    always-use-default-target="true"/>
         <logout logout-success-url="/login"/>
         <csrf disabled="true"/>
     </http>

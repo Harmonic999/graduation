@@ -22,4 +22,9 @@ public class RootController {
         return "foodList";
     }
 
+    @GetMapping("/login")
+    public String login() {
+        return "login";
+    }
+
 }
