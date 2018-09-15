@@ -9,6 +9,7 @@
         <sec:authorize access="isAuthenticated()">
             <form:form class="form-inline my-2" action="logout" method="post">
                 <button class="btn btn-primary" type="submit">
+                    Logout
                     <span class="fa fa-sign-out"></span>
                 </button>
             </form:form>
