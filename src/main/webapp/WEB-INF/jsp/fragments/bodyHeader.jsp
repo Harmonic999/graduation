@@ -4,16 +4,29 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <nav class="navbar navbar-dark bg-dark">
+
     <div class="container">
+
         <a href="restaurants" class="navbar-brand">Restaurant Voting App</a>
+
         <sec:authorize access="isAuthenticated()">
-            <form:form class="form-inline my-2" action="logout" method="post">
-                <button class="btn btn-primary" type="submit">
-                    Logout
-                    <span class="fa fa-sign-out"></span>
+            <div class="input-group-append">
+
+                <button class="btn btn-primary mt-2 mb-2 mr-1" onclick="window.location='profile'">
+                    Profile
                 </button>
-            </form:form>
+
+                <form:form class="form-inline my-2" action="logout" method="post">
+                    <button class="btn btn-primary" type="submit">
+                        Logout
+                        <span class="fa fa-sign-out"></span>
+                    </button>
+                </form:form>
+            </div>
+
+
         </sec:authorize>
+
         <sec:authorize access="isAnonymous()">
             <form:form class="form-inline my-2" id="login_form" action="spring_security_check" method="post">
                 <input class="form-control mr-1" type="text" placeholder="Email" name="username">

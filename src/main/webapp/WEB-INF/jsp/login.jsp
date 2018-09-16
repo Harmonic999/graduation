@@ -14,12 +14,13 @@
 
     <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
     <label for="username" class="sr-only">Email address</label>
-    <input name="username" type="email" id="username" class="form-control" placeholder="Email address" required="" autofocus="">
+    <input name="username" type="email" id="username" class="form-control" placeholder="Email address" required="">
     <label for="password" class="sr-only">Password</label>
     <input name="password" type="password" id="password" class="form-control" placeholder="Password" required="">
 
     <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-    <p class="mt-5 mb-3 text-muted">© 2017-2018</p>
+    <button onclick="window.location='register'" class="btn btn-lg btn-primary btn-block">Register</button>
+
 </form:form>
 
 

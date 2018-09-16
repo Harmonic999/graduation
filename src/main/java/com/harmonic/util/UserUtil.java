@@ -1,7 +1,9 @@
 package com.harmonic.util;
 
+import com.harmonic.model.Role;
 import com.harmonic.model.User;
 import com.harmonic.to.UserTo;
+import com.harmonic.util.exception.IllegalRequestDataException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.util.StringUtils;
 
@@ -18,4 +20,15 @@ public class UserUtil {
         return user;
     }
 
+    public static User createFromTo(UserTo userTo) {
+        return new User(userTo.getId(), userTo.getName(), userTo.getEmail(), userTo.getPassword(), Role.ROLE_USER);
+    }
+
+    public static void checkId(UserTo userTo, int authUserId) {
+        if (userTo.getId() == null) {
+            userTo.setId(authUserId);
+        } else if (userTo.getId() != authUserId) {
+            throw new IllegalRequestDataException(userTo + " must be with id=" + authUserId);
+        }
+    }
 }
