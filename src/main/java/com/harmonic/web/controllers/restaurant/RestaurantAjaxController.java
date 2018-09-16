@@ -1,9 +1,11 @@
 package com.harmonic.web.controllers.restaurant;
 
+import com.harmonic.AuthorizedUser;
 import com.harmonic.to.RestaurantTo;
 import com.harmonic.web.validation.RestaurantValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
@@ -47,5 +49,10 @@ public class RestaurantAjaxController extends AbstractRestaurantController {
     @PostMapping
     public void createOrUpdateRestaurant(@Validated RestaurantTo restaurantTo) {
         super.createOrUpdateRestaurant(restaurantTo);
+    }
+
+    @GetMapping("/vote/{restaurantId}")
+    public void handleUserVote(@AuthenticationPrincipal AuthorizedUser user, @PathVariable int restaurantId) {
+        super.handleUserVote(user.getId(), restaurantId);
     }
 }

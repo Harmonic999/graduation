@@ -1,7 +1,7 @@
 package com.harmonic.web.controllers.restaurant;
 
-import com.harmonic.model.Restaurant;
 import com.harmonic.service.RestaurantService;
+import com.harmonic.service.VotesAccountantService;
 import com.harmonic.to.RestaurantTo;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -14,8 +14,13 @@ public abstract class AbstractRestaurantController {
     @Autowired
     private RestaurantService restaurantService;
 
+    @Autowired
+    private VotesAccountantService votesAccountantService;
+
     List<RestaurantTo> getAll() {
-        return asTo(restaurantService.getAll());
+        List<RestaurantTo> tos = asTo(restaurantService.getAll());
+        setVotes(tos, votesAccountantService.getAll());
+        return tos;
     }
 
     RestaurantTo get(int id) {
@@ -28,5 +33,9 @@ public abstract class AbstractRestaurantController {
 
     void createOrUpdateRestaurant(RestaurantTo restaurantTo) {
         restaurantService.save(createFromTo(restaurantTo));
+    }
+
+    void handleUserVote(int userId, int restaurantId) {
+        votesAccountantService.handleUserVote(userId, restaurantId);
     }
 }

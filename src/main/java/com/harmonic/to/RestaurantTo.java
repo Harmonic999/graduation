@@ -14,10 +14,10 @@ public class RestaurantTo extends BaseTo implements Serializable {
 
     }
 
-    public RestaurantTo(Integer id, String name, Integer voteCount) {
+    public RestaurantTo(Integer id, String name) {
         super(id);
         this.name = name;
-        this.voteCount = voteCount;
+        this.voteCount = 0;
     }
 
     public String getName() {

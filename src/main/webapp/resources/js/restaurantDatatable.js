@@ -4,7 +4,7 @@ const ajaxUrl = "ajax/restaurants/";
 $(function () {
     dataTableApi = $("#datatable").DataTable(
         {
-            "ajax":{
+            "ajax": {
                 "url": ajaxUrl,
                 "dataSrc": ""
             },
@@ -30,6 +30,16 @@ function save() {
             $("#editRow").modal("hide");
             updateTable();
             successNoty("Saved");
+        }
+    });
+}
+
+function vote(id) {
+    $.ajax({
+        type: "GET",
+        url: ajaxUrl + "vote/" + id,
+        success: function () {
+            updateTable();
         }
     });
 }

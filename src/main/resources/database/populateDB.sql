@@ -10,8 +10,8 @@ ALTER TABLE restaurants
 ALTER TABLE users
   AUTO_INCREMENT = 1;
 
-insert into restaurants (name, vote_count) values ('test_restaurant_1', 0);
-insert into restaurants (name, vote_count) values ('test_restaurant_2', 0);
+insert into restaurants (name) values ('test_restaurant_1');
+insert into restaurants (name) values ('test_restaurant_2');
 
 insert into food (description, restaurant_id) values ('food_1', 1);
 insert into food (description, restaurant_id) values ('food_2', 1);

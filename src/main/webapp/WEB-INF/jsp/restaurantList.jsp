@@ -24,8 +24,8 @@
                 <th>Name</th>
                 <th>Votes</th>
                 <th></th>
+                <th></th>
                 <sec:authorize access="hasRole('ROLE_ADMIN')">
-                    <th></th>
                     <th></th>
                 </sec:authorize>
             </tr>
@@ -103,6 +103,19 @@
                 }
             }
         }
+
+        <sec:authorize access="!hasRole('ROLE_ADMIN')">
+        ,
+        {
+            "defaultContent": "",
+            "orderable": false,
+            "render": function (data, type, row) {
+                if (type === "display") {
+                    return "<button onclick='vote(" + row.id + ")'>Vote!</button>";
+                }
+            }
+        }
+        </sec:authorize>
 
         <sec:authorize access="hasRole('ROLE_ADMIN')">
         ,

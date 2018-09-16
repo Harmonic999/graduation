@@ -10,9 +10,6 @@ public class Restaurant extends AbstractBaseEntity {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "vote_count")
-    private int votesCount;
-
     @OneToMany(
             mappedBy = "restaurant",
             cascade = CascadeType.REMOVE,
@@ -27,10 +24,9 @@ public class Restaurant extends AbstractBaseEntity {
         this.name = name;
     }
 
-    public Restaurant(Integer id, String name, int votesCount) {
+    public Restaurant(Integer id, String name) {
         super(id);
         this.name = name;
-        this.votesCount = votesCount;
     }
 
     public String getName() {
@@ -40,9 +36,4 @@ public class Restaurant extends AbstractBaseEntity {
     public void setName(String name) {
         this.name = name;
     }
-
-    public int getVotesCount() {
-        return votesCount;
-    }
-
 }

@@ -2,11 +2,11 @@ DROP TABLE IF EXISTS food;
 DROP TABLE IF EXISTS restaurants;
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS user_roles;
+DROP TABLE IF EXISTS registered_votes;
 
 CREATE TABLE work.restaurants (
   id         INT         NOT NULL AUTO_INCREMENT,
   name       VARCHAR(50) NOT NULL UNIQUE,
-  vote_count INT         NOT NULL,
   PRIMARY KEY (id),
   UNIQUE INDEX id_UNIQUE(id ASC) VISIBLE
 );
@@ -34,5 +34,11 @@ CREATE TABLE work.user_roles (
   role    VARCHAR(50)
     REFERENCES users (id)
       ON DELETE CASCADE
+);
+
+CREATE TABLE work.registered_votes (
+  user_id INTEGER NOT NULL,
+  restaurant_id INTEGER NOT NULL,
+  UNIQUE INDEX id_UNIQUE(user_id ASC) VISIBLE
 );
 
