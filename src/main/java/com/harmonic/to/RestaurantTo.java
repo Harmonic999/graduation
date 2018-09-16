@@ -10,6 +10,8 @@ public class RestaurantTo extends BaseTo implements Serializable {
 
     private Integer voteCount;
 
+    private boolean votedByCurrentUser;
+
     public RestaurantTo() {
 
     }
@@ -34,5 +36,13 @@ public class RestaurantTo extends BaseTo implements Serializable {
 
     public void setVoteCount(Integer voteCount) {
         this.voteCount = voteCount;
+    }
+
+    public boolean isVotedByCurrentUser() {
+        return votedByCurrentUser;
+    }
+
+    public void setVotedByCurrentUser(boolean voted) {
+        votedByCurrentUser = voted;
     }
 }

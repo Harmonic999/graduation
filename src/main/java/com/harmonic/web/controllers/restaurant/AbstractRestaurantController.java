@@ -17,9 +17,9 @@ public abstract class AbstractRestaurantController {
     @Autowired
     private VotesAccountantService votesAccountantService;
 
-    List<RestaurantTo> getAll() {
+    List<RestaurantTo> getAll(int authUserId) {
         List<RestaurantTo> tos = asTo(restaurantService.getAll());
-        setVotes(tos, votesAccountantService.getAll());
+        setVotes(tos, votesAccountantService.getAll(), authUserId);
         return tos;
     }
 

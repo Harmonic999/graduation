@@ -15,6 +15,9 @@ $(function () {
                 0,
                 "asc"
             ],
+            "createdRow": function (row, data, dataIndex) {
+                $(row).attr("votedByCurrentUser", data.votedByCurrentUser);
+            },
             "initComplete": makeEditable
         }
     );

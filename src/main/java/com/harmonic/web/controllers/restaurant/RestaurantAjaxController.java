@@ -28,10 +28,9 @@ public class RestaurantAjaxController extends AbstractRestaurantController {
         binder.setValidator(validator);
     }
 
-    @Override
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<RestaurantTo> getAll() {
-        return super.getAll();
+    public List<RestaurantTo> getAll(@AuthenticationPrincipal AuthorizedUser user) {
+        return super.getAll(user.getId());
     }
 
     @Override

@@ -26,12 +26,15 @@ public class RestaurantUtil {
         return new Restaurant(restaurantTo.getId(), restaurantTo.getName());
     }
 
-    public static void setVotes(List<RestaurantTo> tos, List<VotesAccountant> accountants) {
+    public static void setVotes(List<RestaurantTo> tos, List<VotesAccountant> accountants, int authUserId) {
         // TODO: implement this another way with map - if map contains key(restaurant_id) set value(ids_count)
         for (RestaurantTo restaurantTo : tos) {
             for (VotesAccountant accountant : accountants) {
                 if (restaurantTo.getId().equals(accountant.getRestaurantId())) {
                     restaurantTo.setVoteCount(restaurantTo.getVoteCount() + 1);
+                    if (accountant.getUserId() == authUserId) {
+                        restaurantTo.setVotedByCurrentUser(true);
+                    }
                 }
             }
         }
