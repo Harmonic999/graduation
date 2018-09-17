@@ -8,14 +8,14 @@
 <script type="text/javascript" src="resources/js/datatableUtil.js" defer></script>
 <script type="text/javascript" src="resources/js/foodDatatable.js" defer></script>
 
-<div class="jumbotron">
+<div class="jumbotron" style="background-color: #ffffff;">
     <div class="container">
 
         <h2>Lunch menu:</h2>
 
-        <hr>
+        <hr color="black">
 
-        <table id="datatable" class="table table-striped">
+        <table id="datatable" class="table">
 
             <thead>
             <tr>
@@ -29,8 +29,10 @@
 
         </table>
 
+        <hr color="black">
+
         <sec:authorize access="hasRole('ROLE_ADMIN')">
-            <button class="btn btn-primary pull-right" onclick="add()">
+            <button class="btn btn-primary" onclick="add()">
                 Add New
                 <span class="fa fa-plus"></span>
             </button>

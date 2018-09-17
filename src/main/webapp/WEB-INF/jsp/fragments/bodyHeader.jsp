@@ -3,7 +3,7 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<nav class="navbar navbar-dark bg-dark">
+<nav class="navbar navbar-dark bg-primary">
 
     <div class="container">
 

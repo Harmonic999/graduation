@@ -8,7 +8,6 @@ $(function () {
                 "url": buildMenuUrlWithRestaurantId(),
                 "dataSrc": ""
             },
-            "paging": false,
             "info": true,
             "columns": foodListDrawProperties,
             "order": [

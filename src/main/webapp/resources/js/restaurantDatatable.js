@@ -8,7 +8,7 @@ $(function () {
                 "url": ajaxUrl,
                 "dataSrc": ""
             },
-            "paging": false,
+
             "info": true,
             "columns": restaurantListDrawProperties,
             "order": [
