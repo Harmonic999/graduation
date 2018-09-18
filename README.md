@@ -5,7 +5,7 @@ Java EE Project using stack of technologies:
 - Maven;
 - Spring MVC, Spring Security, JSP, Servlets;
 - MySql, JPA/Hibernate;
-- Jackson, Bootstrap(CSS), Ajax, Datatables plugin.
+- Jackson/JSON, Bootstrap(CSS), Ajax, Datatables plugin.
 
 Description:
 
