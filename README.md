@@ -1,4 +1,4 @@
-(Currently in progress)
+**(Currently in progress)**
 
 Java EE Project using stack of technologies:
 
@@ -13,11 +13,9 @@ Restaurant voting web application where users can vote for a particular restaura
 Administator has rights to add/edit/delete restaurants, food and users and refresh users' votes.
 Users are able to vote only one time. They can revote for another restaurant if it is less than 12:00. User's vote is highlighted.
 
-Launching application requires MySql database installed on a local machine 
+Launching application requires MySql database installed on a local machine. 
 
 URL = jdbc:mysql://localhost:3306/work
 schema = "work", user = "root", no password.
-
-Or you can edit your own database parametres here - src/main/resources/database/mySQL.properties
 
 
